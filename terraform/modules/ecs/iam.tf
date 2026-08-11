@@ -72,6 +72,11 @@ resource "aws_iam_role_policy_attachment" "ecs_instance_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 }
 
+resource "aws_iam_role_policy_attachment" "ecs_ecr_read" {
+  role       = aws_iam_role.ecs_instance_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+}
+
 
 resource "aws_iam_instance_profile" "ecs_profile" {
   name = "ecs-instance-profile"
