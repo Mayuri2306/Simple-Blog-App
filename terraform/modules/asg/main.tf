@@ -66,7 +66,7 @@ resource "aws_autoscaling_group" "ecs_asg" {
 
 resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
 
-  name = "ecs-capacity-provider"
+  name = "blog-app-capacity-provider"
 
   auto_scaling_group_provider {
 
