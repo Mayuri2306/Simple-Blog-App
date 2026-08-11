@@ -38,7 +38,10 @@ module "ecs" {
   repo_url         = module.ecr.repo_url
   container_port   = var.container_port
   target_group_arn = module.ALB.target_group_arn
-  db_secret_arn    = module.database.master_user_secret_arn
+
+  db_secret_arn = module.database.master_user_secret_arn
+  db_host       = module.database.db_endpoint
+  db_name       = module.database.db_name
 }
 
 

@@ -2,6 +2,7 @@ resource "aws_ecs_cluster" "application_cluster" {
   name = "application-cluster"
 }
 
+
 resource "aws_ecs_task_definition" "task_def" {
   family                   = "backend"
   requires_compatibilities = ["EC2"]
@@ -23,18 +24,45 @@ resource "aws_ecs_task_definition" "task_def" {
         {
           containerPort = var.container_port
           hostPort      = var.container_port
+          protocol      = "tcp"
+        }
+      ]
+
+      environment = [
+        {
+          name  = "DB_HOST"
+          value = var.db_host
+        },
+        {
+          name  = "DB_NAME"
+          value = var.db_name
+        },
+        {
+          name  = "DB_PORT"
+          value = "3306"
+        }
+      ]
+
+      secrets = [
+        {
+          name      = "DB_USER"
+          valueFrom = "${var.db_secret_arn}:username::"
+        },
+        {
+          name      = "DB_PASSWORD"
+          valueFrom = "${var.db_secret_arn}:password::"
         }
       ]
     }
   ])
 }
 
+
 resource "aws_ecs_service" "service" {
   name            = "backend-service"
   cluster         = aws_ecs_cluster.application_cluster.id
   task_definition = aws_ecs_task_definition.task_def.arn
   desired_count   = 1
-  launch_type     = "EC2"
 
   load_balancer {
     target_group_arn = var.target_group_arn
@@ -42,5 +70,7 @@ resource "aws_ecs_service" "service" {
     container_port   = var.container_port
   }
 
-  depends_on = [aws_ecs_cluster.application_cluster]
+  depends_on = [
+    aws_ecs_cluster.application_cluster
+  ]
 }

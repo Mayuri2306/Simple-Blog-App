@@ -26,10 +26,10 @@ repository_name = "backend-application"
 
 
 # Frontend
-bucket_name = "simple-blog-app-frontend-mayuri2306"
+bucket_name = "simple-blog-app-frontend"
 
 
-# ECS EC2 / ASG
+# ASG
 instance_type    = "t3.micro"
 
 min_size         = 1
