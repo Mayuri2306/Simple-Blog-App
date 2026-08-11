@@ -74,7 +74,7 @@ resource "aws_iam_role_policy_attachment" "ecs_instance_attach" {
 
 resource "aws_iam_role_policy_attachment" "ecs_ecr_read" {
   role       = aws_iam_role.ecs_instance_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
 }
 
 
