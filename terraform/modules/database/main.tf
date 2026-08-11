@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "mysql-db-subnet-group"
-  subnet_ids = var.private_subnets
+  subnet_ids = var.public_subnets
 }
 
 resource "aws_db_instance" "mysql" {
@@ -22,7 +22,7 @@ resource "aws_db_instance" "mysql" {
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids = [aws_security_group.database_sg.id]
 
-  publicly_accessible = false
+  publicly_accessible = true
 
   multi_az = false
 
