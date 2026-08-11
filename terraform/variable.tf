@@ -91,7 +91,6 @@ variable "engine_version" {
 
 
 variable "instance_class" {
-  description = "RDS instance class"
   type        = string
 }
 
