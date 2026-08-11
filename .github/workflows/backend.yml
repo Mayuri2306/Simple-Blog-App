@@ -1,11 +1,10 @@
-name: Backend CI/CD
+name: Backend 
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'backend/**'
+  workflow_run:
+    workflows: ["Terraform"]
+    types:
+      - completed
 
 env:
   AWS_REGION: us-west-2
@@ -15,6 +14,9 @@ env:
 
 jobs:
   deploy:
+    name: Deploy Backend
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:

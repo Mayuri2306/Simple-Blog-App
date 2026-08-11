@@ -1,17 +1,19 @@
-name: Frontend Deployment
+name: Frontend 
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'frontend/**'
+  workflow_run:
+    workflows: ["Backend"]
+    types:
+      - completed
 
 env:
   AWS_REGION: us-west-2
 
 jobs:
   deploy:
+    name: Deploy Frontend
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
