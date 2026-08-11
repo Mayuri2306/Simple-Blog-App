@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "app_tg" {
   target_type = "instance"
 
   health_check {
-    path                = "/"
+    path                = "/api/posts"
     interval            = 30
     timeout             = 5
     healthy_threshold   = 2

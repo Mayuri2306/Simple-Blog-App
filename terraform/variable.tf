@@ -1,40 +1,108 @@
-variable "aws_region" {}
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+}
+
 
 variable "vpc_cidr" {
-  type = string
+  description = "CIDR block for the VPC"
+  type        = string
 }
+
 
 variable "pub_sub_cidr" {
-  type = list(string)
+  description = "CIDR blocks for public subnets"
+  type        = list(string)
 }
+
 
 variable "pri_sub_cidr" {
-  type = list(string)
+  description = "CIDR blocks for private subnets"
+  type        = list(string)
 }
 
-variable "container_port" {}
 
-variable "bucket_name" {}
-
-variable "min_size" {
-  type = number
+variable "create_nat_gateway" {
+  description = "Whether to create a NAT gateway"
+  type        = bool
+  default     = true
 }
 
-variable "max_size" {
-  type = number
+
+variable "container_port" {
+  description = "Port on which the backend container listens"
+  type        = number
+  default     = 5003
 }
 
-variable "desired_capacity" {
-  type = number
+
+variable "repository_name" {
+  description = "ECR repository name"
+  type        = string
 }
 
-variable "ami_id" {
-    type = string
+
+variable "bucket_name" {
+  description = "S3 bucket name for the frontend"
+  type        = string
 }
+
 
 variable "instance_type" {
-    type = string
+  description = "EC2 instance type for ECS"
+  type        = string
 }
 
 
+variable "min_size" {
+  description = "Minimum number of EC2 instances"
+  type        = number
+}
 
+
+variable "max_size" {
+  description = "Maximum number of EC2 instances"
+  type        = number
+}
+
+
+variable "desired_capacity" {
+  description = "Desired number of EC2 instances"
+  type        = number
+}
+
+
+variable "db_name" {
+  description = "RDS database name"
+  type        = string
+}
+
+
+variable "db_username" {
+  description = "RDS master username"
+  type        = string
+}
+
+
+variable "engine_version" {
+  description = "MySQL engine version"
+  type        = string
+}
+
+
+variable "instance_class" {
+  description = "RDS instance class"
+  type        = string
+}
+
+
+variable "allocated_storage" {
+  description = "Initial RDS storage in GB"
+  type        = number
+}
+
+
+variable "max_allocated_storage" {
+  description = "Maximum RDS storage in GB"
+  type        = number
+}
