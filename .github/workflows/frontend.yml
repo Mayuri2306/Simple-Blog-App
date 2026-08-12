@@ -1,7 +1,11 @@
 name: Frontend 
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
 
 env:
   AWS_REGION: us-west-2
