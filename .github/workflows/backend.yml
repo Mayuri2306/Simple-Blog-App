@@ -1,11 +1,7 @@
 name: Backend 
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'backend/**'
+  workflow_dispatch:
 
 env:
   AWS_REGION: us-west-2
