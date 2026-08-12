@@ -5,7 +5,7 @@ data "aws_ami" "linux" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-ecs-hvm-*-x86_64-ebs"]
+    values = ["al2023-ami-ecs-hvm-*-x86_64-ebs"]
   }
 }
 resource "aws_launch_template" "ecs_launch_template" {
