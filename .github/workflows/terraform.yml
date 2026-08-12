@@ -1,11 +1,7 @@
 name: Terraform 
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'terraform/**'
+  workflow_dispatch:
 
 env:
   AWS_REGION: us-west-2
