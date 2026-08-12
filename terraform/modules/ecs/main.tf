@@ -8,8 +8,8 @@ resource "aws_ecs_task_definition" "task_def" {
   requires_compatibilities = ["EC2"]
   network_mode             = "bridge"
 
-  cpu    = "256"
-  memory = "512"
+  cpu    = "128"
+  memory = "256"
 
   execution_role_arn = aws_iam_role.ecs_execution_role.arn
   task_role_arn      = aws_iam_role.ecs_task_role.arn
