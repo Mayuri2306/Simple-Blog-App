@@ -49,7 +49,7 @@ module "database" {
   source = "./modules/database"
 
   vpc_id            = module.vpc.vpc_output
-  public_subnets   = module.vpc.public_subnets
+  private_subnets   = module.vpc.private_subnets
   backend_sg_id     = module.sg.sg_id
 
   db_name           = var.db_name
