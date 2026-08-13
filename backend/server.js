@@ -14,6 +14,11 @@ const db = mysql.createConnection({
   port: process.env.DB_PORT || 3306
 });
 
+// Backend Health Check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "Backend is running" });
+});
+
 // GET all posts
 app.get('/api/posts', (req, res) => {
   db.query('SELECT * FROM posts ORDER BY created_at DESC', (err, results) => {
